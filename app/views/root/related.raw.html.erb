@@ -6,7 +6,13 @@
 
     <div class="related">
       <div class="inner group">
-        <h2>Related topics</h2>
+        <% if artefact.section && artefact.section != "" %>
+              <% section, subsection = artefact.section.split(':', 2) %>
+              <h2>More in <a href="/browse/<%= h(section.parameterize) %>"
+                ><span><%= h(section) %></span></a></h2>
+              
+            <% end %>
+        <!--h2>Similar content</h2-->
         <nav role="navigation">
           <ul>
             <% if artefact.related_items.size > 0 %>
@@ -18,11 +24,12 @@
                 <% end %>
               <% end %>
             <% end %>
-
+            <li class="related-topic"><a href="/browse/<%= h(section.parameterize) %>"
+                ><span>Lost?</span> Try all sections</a></li>
             <% if artefact.section && artefact.section != "" %>
               <% section, subsection = artefact.section.split(':', 2) %>
-              <li class="related-topic"><a href="/browse/<%= h(section.parameterize) %>"
-                >More from the <span><%= h(section) %></span> section</a></li>
+              <!--li class="related-topic"><a href="/browse/<%= h(section.parameterize) %>"
+                >More from the <span><%= h(section) %></span> section</a></li-->
             <% end %>
           </ul>
         </nav>
